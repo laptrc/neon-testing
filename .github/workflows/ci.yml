@@ -109,6 +109,12 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
 
+      # Run E2E
+      - run: npx nx run api:serve & sleep 5
+      - run: npx nx run api-e2e:e2e
+      - run: npx nx run client:serve & sleep 5
+      - run: npx nx run client-e2e:e2e
+
   delete_neon_branch:
     name: Delete Neon Branch
     needs: setup
