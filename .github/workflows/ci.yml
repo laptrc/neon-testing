@@ -110,9 +110,7 @@ jobs:
       - run: npx nx affected -t lint test build
 
       # Run E2E
-      - run: npx nx run api:serve:ci
-      - run: npx nx run client:serve:ci
-      - run: npx nx run client-e2e:e2e:ci
+      - run: npx nx run api:serve:ci && npx nx run client:serve:ci && npx nx run client-e2e:e2e:ci
 
   delete_neon_branch:
     name: Delete Neon Branch
