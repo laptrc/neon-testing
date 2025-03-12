@@ -110,10 +110,10 @@ jobs:
       - run: npx nx affected -t lint test build
 
       # Run E2E
-      - run: npx nx run api:serve-static
-      - run: npx nx run api-e2e:e2e-ci
-      - run: npx nx run client:serve-static
-      - run: npx nx run client-e2e:e2e-ci
+      - run: npx nx run api:serve-static --skip-nx-cache
+      - run: npx nx run api-e2e:e2e-ci --skip-nx-cache
+      - run: npx nx run client:serve-static --skip-nx-cache
+      - run: npx nx run client-e2e:e2e-ci --skip-nx-cache
 
   delete_neon_branch:
     name: Delete Neon Branch
