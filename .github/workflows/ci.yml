@@ -112,6 +112,8 @@ jobs:
 
       # Run E2E
       - run: npx nx run api:serve & sleep 5
+        env:
+          DATABASE_URL: "${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
       - run: npx nx run api-e2e:e2e
       - run: npx nx run client:serve & sleep 5
       - run: npx nx run client-e2e:e2e
