@@ -27,7 +27,6 @@ jobs:
     outputs:
       db_url: ${{ steps.create_neon_branch.outputs.db_url }}
       db_url_with_pooler: ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}
-      a: ${{ toJson(steps.create_neon_branch.outputs) }}
     needs: setup
     if: |
       github.event_name == 'pull_request' && (
@@ -45,9 +44,12 @@ jobs:
           branch_name: preview/pr-${{ github.event.number }}-${{ needs.setup.outputs.branch }}
           api_key: ${{ secrets.NEON_API_KEY }}
       - name: Log Neon Branch Outputs
+        id: log_neon_branch_outputs
         run: |
           echo "db_url: ${{ steps.create_neon_branch.outputs.db_url }}"
           echo "db_url_with_pooler: ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
+          echo "db_url=${{ steps.create_neon_branch.outputs.db_url }}" >> "$GITHUB_OUTPUT"
+          echo "db_url_with_pooler=${{ steps.create_neon_branch.outputs.db_url_with_pooler }}" >> "$GITHUB_OUTPUT"
 
   # The step above creates a new Neon branch.
   # You may want to do something with the new branch, such as run migrations, run tests
