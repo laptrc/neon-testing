@@ -27,7 +27,7 @@ jobs:
     outputs:
       db_url: ${{ steps.create_neon_branch.outputs.db_url }}
       db_url_with_pooler: ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}
-      a: ${{ steps.create_neon_branch.outputs }}
+      a: ${{ toJson(steps.create_neon_branch.outputs) }}
     needs: setup
     if: |
       github.event_name == 'pull_request' && (
