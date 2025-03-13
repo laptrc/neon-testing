@@ -81,6 +81,8 @@ jobs:
   #          api_key: ${{ secrets.NEON_API_KEY }}
 
   main:
+    name: Main
+    needs: create_neon_branch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -110,7 +112,6 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
 
-      # Run E2E
       - run: echo db_url_with_pooler ${{ needs.create_neon_branch.outputs.db_url_with_pooler }}
       - run: echo db_url ${{ needs.create_neon_branch.outputs.db_url }}
       - name: Serve API
