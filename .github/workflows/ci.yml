@@ -47,10 +47,6 @@ jobs:
         run: |
           echo "db_url: ${{ steps.create_neon_branch.outputs.db_url }}"
           echo "db_url_with_pooler: ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
-      - name: Log Neon Branch Encode Outputs
-        run: |
-          echo "db_url: ${{ steps.create_neon_branch_encode.outputs.db_url }}"
-          echo "db_url_with_pooler: ${{ steps.create_neon_branch_encode.outputs.db_url_with_pooler }}"
 
   # The step above creates a new Neon branch.
   # You may want to do something with the new branch, such as run migrations, run tests
@@ -120,8 +116,10 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
 
-      - run: echo db_url_with_pooler ${{ needs.create_neon_branch.outputs.db_url_with_pooler }}
-      - run: echo db_url ${{ needs.create_neon_branch.outputs.db_url }}
+      - name: Log Neon Branch Outputs
+        run: |
+          echo "db_url: ${{ needs.create_neon_branch.outputs.db_url }}"
+          echo "db_url_with_pooler: ${{ needs.create_neon_branch.outputs.db_url_with_pooler }}"
       - name: Serve API
         run: npx nx run api:serve & sleep 5
         env:
