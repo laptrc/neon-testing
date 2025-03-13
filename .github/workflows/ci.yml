@@ -43,6 +43,10 @@ jobs:
           database: todo_app
           branch_name: preview/pr-${{ github.event.number }}-${{ needs.setup.outputs.branch }}
           api_key: ${{ secrets.NEON_API_KEY }}
+      - name: Log Neon DB URL
+        run: echo "DB URL: ${{ steps.create_neon_branch.outputs.db_url }}"
+      - name: Log Neon DB URL with Pooler
+        run: echo "DB URL with Pooler: ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
 
   # The step above creates a new Neon branch.
   # You may want to do something with the new branch, such as run migrations, run tests
@@ -111,7 +115,7 @@ jobs:
       - run: npx nx affected -t lint test build
 
       # Run E2E
-      - run: echo db_url ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}
+      - run: echo db_url_with_pooler ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}
       - run: echo db_url ${{ steps.create_neon_branch.outputs.db_url }}
       - run: npx nx run api:serve & sleep 5
         env:
