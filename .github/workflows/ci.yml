@@ -111,10 +111,8 @@ jobs:
       - run: npx nx affected -t lint test build
 
       # Run E2E
-      - run: echo "DATABASE_URL ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
-      - run: echo "DATABASE_URL ${{ steps.create_neon_branch.outputs.db_url }}"
-      - run: echo "DATABASE_URL ${{ steps.create_neon_branch_encode.outputs.db_url_with_pooler }}"
-      - run: echo "DATABASE_URL ${{ steps.create_neon_branch_encode.outputs.db_url }}"
+      - run: echo db_url ${{ steps.create_neon_branch.outputs.db_url_with_pooler }}
+      - run: echo db_url ${{ steps.create_neon_branch.outputs.db_url }}
       - run: npx nx run api:serve & sleep 5
         env:
           DATABASE_URL: "${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
