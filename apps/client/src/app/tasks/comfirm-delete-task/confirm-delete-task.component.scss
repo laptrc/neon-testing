@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+
+.confirm-button {
+  @include mat.button-overrides((
+    filled-container-color: #dc3545,
+    filled-label-text-color: white,
+  ));
+}

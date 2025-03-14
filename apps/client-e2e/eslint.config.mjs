@@ -6,6 +6,8 @@ export default [
   ...baseConfig,
   {
     // Override or add rules here
-    rules: {},
+    rules: {
+      'cypress/unsafe-to-chain-command': 'warn',
+    },
   },
 ];
