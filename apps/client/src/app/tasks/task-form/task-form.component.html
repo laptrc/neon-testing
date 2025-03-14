@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>{{ task ? 'Update' : 'Create' }} task</h2>
+<mat-dialog-content [formGroup]="formGroup">
+  <div class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="isCompleted">Completed</mat-checkbox>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Due date</mat-label>
+      <input matInput formControlName="dueDate" [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>User ID</mat-label>
+      <mat-select formControlName="userId">
+        <mat-option [value]="1">1</mat-option>
+        <mat-option [value]="2">2</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button [disabled]="formGroup.invalid" (click)="onSave()">
+    @if (isSaving) {
+      <mat-spinner diameter="16"></mat-spinner>
+    } @else {
+      {{ task ? 'Save' : 'Create' }}
+    }
+  </button>
+</mat-dialog-actions>

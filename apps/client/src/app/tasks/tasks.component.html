@@ -1,0 +1,61 @@
+<h1>Tasks</h1>
+
+<div class="actions">
+  <button mat-flat-button (click)="onOpenTaskForm()">Add</button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title</th>
+    <td mat-cell *matCellDef="let task"> {{ task.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description</th>
+    <td mat-cell *matCellDef="let task"> {{ task.description }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="isCompleted">
+    <th mat-header-cell *matHeaderCellDef> Completed</th>
+    <td mat-cell *matCellDef="let task"> {{ task.isCompleted ? 'Completed' : 'Pending' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dueDate">
+    <th mat-header-cell *matHeaderCellDef> Due date</th>
+    <td mat-cell *matCellDef="let task"> {{ task.dueDate | date:'mediumDate' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef> Created at</th>
+    <td mat-cell *matCellDef="let task"> {{ task.createdAt | date:'short' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef> User ID</th>
+    <td mat-cell *matCellDef="let task"> {{ task.userId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let task">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onOpenTaskForm(task)">
+          <mat-icon>edit</mat-icon>
+          <span>Update</span>
+        </button>
+        <button mat-menu-item (click)="onOpenConfirmDeleteTask(task)">
+          <mat-icon>close</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row data-cy="task-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
