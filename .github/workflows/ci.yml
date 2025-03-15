@@ -15,12 +15,12 @@ jobs:
   setup:
     name: Setup
     outputs:
-      branch: ${{ steps.branch_name.outputs.current_branch }}
+      branch: ${{ BRANCH_NAME }}
     runs-on: ubuntu-latest
     steps:
       - name: Get branch name
         id: branch_name
-        uses: tj-actions/branch-names@v8
+        uses: nelonoel/branch-name@v1.0.1
 
   main:
     name: Check, Create Neon Branch & E2E
