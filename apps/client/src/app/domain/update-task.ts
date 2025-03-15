@@ -1,4 +1,4 @@
-import { UpdateTaskDto } from '@neon-testing/shared';
+import { DateTimeUtil, UpdateTaskDto } from '@neon-testing/shared';
 
 export type UpdateTask = {
   title: string;
@@ -12,6 +12,6 @@ export function toUpdateTaskDto(task: UpdateTask): UpdateTaskDto {
     title: task.title,
     description: task.description,
     isCompleted: task.isCompleted,
-    dueDate: task.dueDate.toISOString().slice(0, 10),
+    dueDate: DateTimeUtil.toIsoDateString(task.dueDate),
   };
 }
