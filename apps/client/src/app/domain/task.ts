@@ -8,7 +8,7 @@ export type Task = {
   dueDate: Date;
   createdAt: Date;
   userId: number;
-}
+};
 
 export function fromTaskDto(dto: TaskDto): Task {
   return {

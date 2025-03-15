@@ -5,7 +5,7 @@ export type UpdateTask = {
   description: string;
   isCompleted: boolean;
   dueDate: Date;
-}
+};
 
 export function toUpdateTaskDto(task: UpdateTask): UpdateTaskDto {
   return {

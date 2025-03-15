@@ -1,4 +1,5 @@
 <h2 mat-dialog-title>{{ task ? 'Update' : 'Create' }} task</h2>
+
 <mat-dialog-content [formGroup]="formGroup">
   <div class="form">
     <mat-form-field appearance="outline">
@@ -29,6 +30,7 @@
     </mat-form-field>
   </div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-flat-button [disabled]="formGroup.invalid" (click)="onSave()">

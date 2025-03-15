@@ -1,4 +1,4 @@
-import { CreateTaskDto, UpdateTaskDto } from '@neon-testing/shared';
+import { CreateTaskDto } from '@neon-testing/shared';
 
 export class CreateTask {
   title: string;
@@ -7,7 +7,13 @@ export class CreateTask {
   dueDate: Date;
   userId: number;
 
-  constructor(title: string, description: string, isCompleted: boolean, dueDate: Date, userId: number) {
+  constructor(
+    title: string,
+    description: string,
+    isCompleted: boolean,
+    dueDate: Date,
+    userId: number
+  ) {
     this.title = title;
     this.description = description;
     this.isCompleted = isCompleted;
@@ -16,6 +22,12 @@ export class CreateTask {
   }
 
   static fromDto(dto: CreateTaskDto): CreateTask {
-    return new CreateTask(dto.title, dto.description, dto.isCompleted, new Date(dto.dueDate), dto.userId);
+    return new CreateTask(
+      dto.title,
+      dto.description,
+      dto.isCompleted,
+      new Date(dto.dueDate),
+      dto.userId
+    );
   }
 }

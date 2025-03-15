@@ -1,11 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
   Inject,
+  Param,
+  Post,
   Put,
 } from '@nestjs/common';
 import { ApiBody } from '@nestjs/swagger';
@@ -17,7 +17,6 @@ import { CreateTask, UpdateTask } from '../domain';
 
 @Controller('tasks')
 export class TasksController {
-
   @Inject(TasksService)
   private readonly tasksService: TasksService;
 
@@ -33,7 +32,7 @@ export class TasksController {
   async findAll(): Promise<TaskDto[]> {
     const tasks = await this.tasksService.findAll();
 
-    return tasks.map(t => t.toDto());
+    return tasks.map((t) => t.toDto());
   }
 
   @Get(':id')
@@ -45,7 +44,10 @@ export class TasksController {
 
   @Put(':id')
   @ApiBody({ required: true })
-  async update(@Param('id') id: string, @Body() dto: UpdateTaskDto): Promise<TaskDto> {
+  async update(
+    @Param('id') id: string,
+    @Body() dto: UpdateTaskDto
+  ): Promise<TaskDto> {
     const task = await this.tasksService.update(+id, UpdateTask.fromDto(dto));
 
     return task.toDto();
