@@ -1,4 +1,4 @@
-import { TaskDto } from '@neon-testing/shared';
+import { DateTimeUtil, TaskDto } from '@neon-testing/shared';
 
 import { TaskEntity } from '../entities';
 
@@ -59,7 +59,7 @@ export class Task {
       title: this.title,
       description: this.description,
       isCompleted: this.isCompleted,
-      dueDate: this.dueDate.toISOString().slice(0, 10),
+      dueDate: DateTimeUtil.toIsoDateString(this.dueDate),
       createdAt: this.createdAt.toISOString(),
       userId: this.userId,
     };
