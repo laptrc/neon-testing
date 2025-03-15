@@ -46,7 +46,7 @@ jobs:
         with:
           project_id: ${{ vars.NEON_PROJECT_ID }}
           database: todo_app
-          branch_name: preview/pr-${{ github.event.number }}-${{ github.ref }}
+          branch_name: preview/pr-${{ github.event.number }}
           api_key: ${{ secrets.NEON_API_KEY }}
 
       - name: Serve API
@@ -69,5 +69,5 @@ jobs:
         uses: neondatabase/delete-branch-action@v3
         with:
           project_id: ${{ vars.NEON_PROJECT_ID }}
-          branch: preview/pr-${{ github.event.number }}-${{ github.ref }}
+          branch: preview/pr-${{ github.event.number }}
           api_key: ${{ secrets.NEON_API_KEY }}
