@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 import { TasksComponent } from './tasks.component';
-import { provideHttpClient } from '@angular/common/http';
 
 describe('TasksComponent', () => {
   let component: TasksComponent;

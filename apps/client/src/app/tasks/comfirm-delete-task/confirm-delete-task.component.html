@@ -1,9 +1,11 @@
 <h2 mat-dialog-title>
   Are you sure you want to delete task "{{ task!.title }}"?
 </h2>
+
 <mat-dialog-content>
   Your task will be permanently deleted. This action cannot be undone.
 </mat-dialog-content>
+
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>No, cancel</button>
   <button mat-flat-button class="confirm-button" (click)="onConfirm()">

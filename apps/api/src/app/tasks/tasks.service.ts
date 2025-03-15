@@ -7,7 +7,6 @@ import { CreateTask, Task, UpdateTask } from '../domain';
 
 @Injectable()
 export class TasksService {
-
   @InjectRepository(TaskEntity)
   private readonly tasksRepository: Repository<TaskEntity>;
 
@@ -28,9 +27,13 @@ export class TasksService {
   }
 
   async findAll(): Promise<Task[]> {
-    const entities = await this.tasksRepository.find();
+    const entities = await this.tasksRepository.find({
+      order: {
+        createdAt: 'ASC',
+      },
+    });
 
-    return entities.map(e => Task.fromEntity(e));
+    return entities.map((e) => Task.fromEntity(e));
   }
 
   async findOne(id: number): Promise<Task> {

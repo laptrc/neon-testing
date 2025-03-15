@@ -21,7 +21,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Neon testing API')
-    .setDescription('Let\'s play with Neon')
+    .setDescription("Let's play with Neon")
     .setVersion('1.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);

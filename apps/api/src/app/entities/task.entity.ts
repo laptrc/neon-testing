@@ -1,4 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { UserEntity } from './user.entity';
 
@@ -26,11 +32,18 @@ export class TaskEntity {
   userId: number;
 
   @ManyToOne(() => UserEntity, (user) => user.tasks)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
-
-  constructor(id: number, title: string, description: string, isCompleted: boolean, dueDate: Date, createdAt: Date, userId: number) {
+  constructor(
+    id: number,
+    title: string,
+    description: string,
+    isCompleted: boolean,
+    dueDate: Date,
+    createdAt: Date,
+    userId: number
+  ) {
     this.id = id;
     this.title = title;
     this.description = description;

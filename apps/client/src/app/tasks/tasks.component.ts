@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { TasksService } from '../services';
 import { Task } from '../domain';
@@ -23,6 +24,7 @@ export type TaskDialogData = {
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss',
@@ -32,9 +34,9 @@ export class TasksComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
 
   displayedColumns: string[] = [
+    'isCompleted',
     'title',
     'description',
-    'isCompleted',
     'dueDate',
     'createdAt',
     'userId',
@@ -80,5 +82,11 @@ export class TasksComponent implements OnInit {
         this.dataSource = this.dataSource.filter((t) => t.id !== task.id);
       }
     });
+  }
+
+  onUpdateTask(task: Task, isCompleted: boolean): void {
+    task.isCompleted = isCompleted;
+
+    this.tasksService.update(task.id, { ...task }).subscribe();
   }
 }

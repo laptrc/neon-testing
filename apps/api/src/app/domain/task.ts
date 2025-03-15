@@ -11,7 +11,15 @@ export class Task {
   createdAt: Date;
   userId: number;
 
-  constructor(id: number, title: string, description: string, isCompleted: boolean, dueDate: Date, createdAt: Date, userId: number) {
+  constructor(
+    id: number,
+    title: string,
+    description: string,
+    isCompleted: boolean,
+    dueDate: Date,
+    createdAt: Date,
+    userId: number
+  ) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -53,7 +61,7 @@ export class Task {
       isCompleted: this.isCompleted,
       dueDate: this.dueDate.toISOString().slice(0, 10),
       createdAt: this.createdAt.toISOString(),
-      userId: this.userId
+      userId: this.userId,
     };
   }
 }

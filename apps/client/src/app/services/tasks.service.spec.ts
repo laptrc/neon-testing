@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 import { TasksService } from './tasks.service';
-import { provideHttpClient } from '@angular/common/http';
 
 describe('TasksService', () => {
   let service: TasksService;
