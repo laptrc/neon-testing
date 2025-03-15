@@ -15,7 +15,7 @@ jobs:
   setup:
     name: Setup
     outputs:
-      branch: ${{ BRANCH_NAME }}
+      branch: ${BRANCH_NAME}
     runs-on: ubuntu-latest
     steps:
       - name: Get branch name
