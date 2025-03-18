@@ -8,7 +8,7 @@ describe('client-e2e', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains(/Tasks/);
+    getGreeting().contains(/To-do/);
   });
 
   it('should display table', () => {
